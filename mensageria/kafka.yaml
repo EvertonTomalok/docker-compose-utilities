@@ -31,3 +31,14 @@ services:
     - "19000:9000"
     environment:
       KAFKA_BROKERCONNECT: "kafka:29092"
+  kafkaui:
+    image: provectuslabs/kafka-ui:latest
+    depends_on:
+    - kafka
+    - zookeeper
+    ports:
+    - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka:9092"
+      KAFKA_CLUSTERS_0_NAME: "KAFKA LOCAL"
+      KAFKA_CLUSTERS_0_ZOOKEEPER: "zookeeper:2181"
